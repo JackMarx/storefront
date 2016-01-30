@@ -1,0 +1,10 @@
+<h1><%= @order.user.email.titleize %></h1>
+<h1>Your Order is: <%= @order.id %></h1>
+
+<h3>Quantity: <%= @order.quantity %></h3>
+<h3>Subtotal: <%= number_to_currency(@order.subtotal) %></h3>
+<h3>Tax: <%= number_to_currency(@order.tax) %></h3>
+<hr>
+<h3>Total: <%= number_to_currency(@order.total) %></h3>
+
+<%= image_tag @order.product.get_the_first_image %>

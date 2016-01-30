@@ -1,0 +1,23 @@
+<h1>Edit Taco</h1>
+
+<%= form_tag "/products/#{@taco.id}", method: :patch do %>
+
+<div>
+  <%= label_tag :name %>
+  <%= text_field_tag :name, @taco.name %>
+</div>
+<div>
+  <%= label_tag :price %>
+  <%= text_field_tag :price, @taco.price %>
+</div>
+<div>
+  <%= label_tag :image %>
+  <%= text_field_tag :image, @taco.image %>
+</div>
+<div>
+  <%= label_tag :description %>
+  <%= text_field_tag :description, @taco.description %>
+</div>
+<%= submit_tag "Update Taco" %>
+
+<% end %>
