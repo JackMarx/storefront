@@ -9,15 +9,21 @@
             <hr>
             <p>Total: $ <%= @taco.total %></p>
             <p>Images:</p>
-            <% @taco.images.each do |image| %>
-              <%= image_tag image.url, class: "img-responsive" %>
+            <% unless @taco.images == [] %>
+              <% @taco.images.each do |image| %>
+                <%= image_tag image.url, class: "img-responsive" %>
+                <%= link_to "Edit Image", "/images/#{image.id}/edit", class: "btn btn-info" %>
+                <%= link_to "Delete Image", "/images/#{image.id}", {method: :delete, class: "btn btn-danger" } %>
+              <% end %>
+            <% else %>
+                <%= link_to "Add Image", "/products/#{@taco.id}/images/new", class: "btn btn-success" %>
             <% end %>
             <p>Description: <%= @taco.description %></p>
             <p>Rating: <span class="rating"><%= @taco.rating %></span></p>
             <%= link_to "Edit", "/products/#{@taco.id}/edit", class: "btn btn-success" %>
-            <%= link_to "Delete", "/products/#{@taco.id}", {method: :delete, class: "btn btn-danger" }%>
+            <%= link_to "Delete", "/products/#{@taco.id}", {method: :delete, class: "btn btn-danger" } %>
             <hr>
-            <%= form_tag "/orders", method: :post do%>
+            <%= form_tag "/carted_products", method: :post do%>
               <div class="form-group">
                 <%= label_tag :quantity %>
                 <%= text_field_tag :quantity %>
@@ -25,7 +31,7 @@
               <div class="form-group">
                 <%= hidden_field_tag :product_id, @taco.id %>
               </div>
-              <%= submit_tag "Buy Now!", class: "btn btn-default" %>
+              <%= submit_tag "Add to Cart", class: "btn btn-default" %>
             <% end %>
         </div>
       </div>

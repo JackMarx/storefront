@@ -35,6 +35,11 @@
             <li><a href="/products?sort=price&sort_order=asc">Lowest to Highest</a></li>
             <li><a href="/products?sort=price&sort_order=desc">Highest to Lowest</a></li>
             <li><a href="/products?discount=100">Discount</a></li>
+
+            <% Category.all.each do |category| %>
+              <li><%= link_to category.name.titleize, "/products?category=#{category.uri_encoded_name}" %></li>
+            <% end %>
+
             <li><%= link_to "Add New Recipe", "/products/new" %></li>
                         <li class="divider"></li>
             <li>

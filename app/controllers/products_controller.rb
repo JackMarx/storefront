@@ -8,6 +8,9 @@ def index
   if params[:discount]
     @tacos = @tacos.where("price < ?", params[:discount])
   end
+  if params[:category]
+    @tacos = Category.find_by(name: params[:category]).products
+  end
 end
 
 def show

@@ -1,22 +1,38 @@
 Rails.application.routes.draw do
-  get 'orders/create'
-
-  get 'orders/show'
 
   devise_for :users
   root 'products#index'
+
+  get '/products/random' => 'products#random'
+  post '/search' => 'products#search'
+  
   get "/products" => 'products#index'
   get "/products/new" => 'products#new'
   post "/products" => 'products#create'
-
-  get '/products/random' => 'products#random'
   get "/products/:id" => 'products#show'
-
   get "/products/:id/edit" => 'products#edit'
-  delete "/products/:id" => 'products#destroy'
   patch "/products/:id" => 'products#update'
+  delete "/products/:id" => 'products#destroy'
 
-  post '/search' => 'products#search'
+
+  post "/orders" => 'orders#create'
+  get "/orders/:id" => 'orders#show'
+
+  post '/carted_products' => 'carted_products#create'
+
+
+
+
+
+
+
+
+
+  get '/products/:product_id/images/new' => 'images#new'
+  post '/products/:product_id/images' => 'images#create'
+  get '/images/:id/edit' => "images#edit"
+  patch '/images/:id' => 'images#update'
+  delete '/images/:id' => 'images#destroy'
 
   get "/suppliers" => 'suppliers#index'
   get "/suppliers/new" => 'suppliers#new'
@@ -25,7 +41,4 @@ Rails.application.routes.draw do
   get "/suppliers/:id/edit" => 'suppliers#edit'
   patch "/suppliers/:id" => 'suppliers#update'
   delete "/suppliers/:id" => 'suppliers#destroy'
-
-  post "/orders" => 'orders#create'
-  get "/orders/:id" => 'orders#show'
 end

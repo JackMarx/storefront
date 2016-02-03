@@ -2,6 +2,15 @@ User.delete_all
 Supplier.delete_all
 Product.delete_all
 Image.delete_all
+Category.delete_all
+
+Category.create!([
+  {name: "beef"      },
+  {name: "shrimp"     },
+  {name: "chicken"    },
+  {name: "combustable"},
+  {name: "fancy"      },
+  ])   
 
 User.create!([
   {email: "josh@google.com", password: "password", password_confirmation: "password"},
@@ -45,3 +54,12 @@ Image.create!([
   {url: "http://www.dvo.com/newsletter/monthly/2013/september/images/navajo_tacos.jpg", product_id: Product.all.sample.id },
   {url: "http://www.gimmesomeoven.com/wp-content/uploads/2012/09/crispy-slow-cooker-carnitas-2.jpg", product_id: Product.all.sample.id}
 ])
+
+CategorizedProduct.create!([
+  {product_id: Product.find_by(name: "Exploding Taco").id,category_id: Category.find_by(name: "fancy").id},
+  {product_id: Product.find_by(name: "Exploding Taco").id,category_id: Category.find_by(name: "combustable").id},
+  {product_id: Product.find_by(name: "Cochinita Pibil").id,category_id: Category.find_by(name: "beef").id},
+  {product_id: Product.find_by(name: "Al Pastor").id,category_id: Category.find_by(name: "shrimp").id},
+  {product_id: Product.find_by(name: "Tacos de Asador").id,category_id: Category.find_by(name: "chicken").id},
+  {product_id: Product.find_by(name: "Tacos de pescado").id,category_id: Category.find_by(name: "shrimp").id},
+  ])

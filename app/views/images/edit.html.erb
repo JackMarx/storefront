@@ -1,0 +1,9 @@
+<h1>Update Image</h1>
+
+<%= form_tag "/images/#{@image.id}", method: :patch do %>
+  <div class="form-group">
+    <%= label_tag :url %>
+    <%= text_field_tag :url, @image.url %>
+  </div>
+  <%= submit_tag "Update", class: "btn btn-default" %>
+<% end %>
