@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
 def index
+
   @tacos = Product.all
   if params[:sort] && params[:sort_order]
     @tacos = @tacos.order(params[:sort] => params[:sort_order])
